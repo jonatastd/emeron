@@ -7,4 +7,5 @@ final Map<String, String> ptBr = {
   'emeron_web': 'Emeron Web',
   'talk_to_us': 'Fale Conosco',
   'restricted_area': 'Área Restrita',
+  'logout_failed_message': 'Não foi possível fazer logout',
 };

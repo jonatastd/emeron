@@ -7,4 +7,5 @@ final Map<String, String> enUs = {
   'emeron_web': 'Emeron Web',
   'talk_to_us': 'Talk to Us',
   'restricted_area': 'Restricted Area',
+  'logout_failed_message': 'Error while doing logout',
 };

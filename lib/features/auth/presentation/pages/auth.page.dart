@@ -1,11 +1,28 @@
 import 'package:emeron/core/utils/constants/image.constants.dart';
 import 'package:emeron/core/utils/widgets/default_stack.widgets.dart';
+import 'package:emeron/features/auth/presentation/controllers/auth.controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:emeron/features/home/presentation/controllers/home.controller.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AuthPage extends GetView<HomeController> {
+class AuthPage extends GetView<AuthController> {
+  final loginCtrl = TextEditingController();
+  final passCtrl = TextEditingController();
+
+  _login() async{
+    try {
+      await controller.signIn(loginCtrl.text, passCtrl.text);
+    } catch (e) {
+      Get.showSnackbar(const GetSnackBar(
+        titleText: Text('Login'),
+        messageText: Text('Eerro'),
+        duration: Durations.extralong4,
+        backgroundColor: Colors.red,
+        snackPosition: SnackPosition.TOP,
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,14 +54,39 @@ class AuthPage extends GetView<HomeController> {
                       const Divider(),
                       Container(
                         margin: const EdgeInsets.symmetric(vertical: 10),
-                        child: TextField(
-                          decoration: getInputDecoration(),
+                        child: Column(
+                          children: [
+                            const Text(
+                              'Usuário',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            TextField(
+                              controller: loginCtrl,
+                              decoration: getInputDecoration(),
+                            ),
+                          ],
                         ),
                       ),
                       Container(
                         margin: const EdgeInsets.symmetric(vertical: 10),
-                        child: TextField(
-                          decoration: getInputDecoration(),
+                        child: Column(
+                          children: [
+                            const Text(
+                              'Senha',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            TextField(
+                              controller: passCtrl,
+                              obscureText: true,
+                              decoration: getInputDecoration(),
+                            ),
+                          ],
                         ),
                       ),
                       Container(
@@ -57,7 +99,7 @@ class AuthPage extends GetView<HomeController> {
                                     WidgetStatePropertyAll(Colors.white),
                                 backgroundColor:
                                     WidgetStatePropertyAll(Color(0xFF13385D))),
-                            onPressed: () {},
+                            onPressed:() => _login(),
                             child: Text('Logar')),
                       )
                     ],
