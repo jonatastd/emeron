@@ -2,17 +2,20 @@ import 'package:get/get.dart';
 import 'package:emeron/core/services/exceptions/api.exceptions.dart';
 import 'package:emeron/features/auth/domain/entities/token.entity.dart';
 import 'package:emeron/features/auth/domain/repositories/iauth.repository.dart';
-import 'package:emeron/features/auth/domain/usecases/authenticate_user.usecase.dart';
+import 'package:emeron/features/auth/domain/usecases/authenticate_with_firebase_user.usecase.dart';
 
-class AuthenticateUserUsecaseImpl implements IAuthenticateUserUseCase {
+
+
+
+class AuthenticateWithFirebaseUserUsecaseImpl implements IAuthenticateWithFirebaseUserUseCase {
   final IAuthRepository repository;
 
-  AuthenticateUserUsecaseImpl(this.repository);
+  AuthenticateWithFirebaseUserUsecaseImpl(this.repository);
 
   @override
-  Future<TokenEntity> call(String login, String password) async {
+  Future<dynamic> call(String login, String password) async {
     try {
-      TokenEntity token = await repository.signIn(login, password);
+      var token = await repository.signInWithFirebase(login, password);
       return token;
     } catch (e) {
       throw ApiException(message: 'login_failed_message'.tr);

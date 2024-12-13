@@ -11,6 +11,8 @@ import 'package:emeron/features/auth/domain/usecases/authenticate_user.usecase.d
 import 'package:emeron/features/auth/infra/datasource/auth/auth.datasource.impl.dart';
 import 'package:emeron/features/auth/infra/datasource/auth/local_auth.datasource.dart';
 import 'package:emeron/features/auth/domain/usecases/authenticate_user.usecase.impl.dart';
+import 'package:emeron/features/auth/domain/usecases/authenticate_with_firebase_user.usecase.dart';
+import 'package:emeron/features/auth/domain/usecases/authenticate_with_firebase_user.usecase.impl.dart';
 
 class AuthBinding extends Bindings {
   @override
@@ -27,7 +29,13 @@ class AuthBinding extends Bindings {
     );
 
     final IAuthenticateUserUseCase authenticateUserUseCase = AuthenticateUserUsecaseImpl(authRepository);
+    final IAuthenticateWithFirebaseUserUseCase authenticateWithFirebaseUserUseCase =
+        AuthenticateWithFirebaseUserUsecaseImpl(authRepository);
+        
 
-    Get.put(AuthController(authenticateUserUseCase));
+    Get.put(AuthController(
+      authenticateUserUseCase: authenticateUserUseCase,
+      authenticateWithFirebaseUserUseCase: authenticateWithFirebaseUserUseCase,
+    ));
   }
 }

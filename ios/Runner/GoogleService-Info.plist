@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyAOzFjwUyj7q2RKM6e5J8vugXg3mNE728k</string>
+	<string>AIzaSyAJrlfnd-g5JHqL93GFxLeo6lJEsAaEJus</string>
 	<key>GCM_SENDER_ID</key>
-	<string>96848600393</string>
+	<string>1003164058180</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.emeron.teste.saitama</string>
+	<string>com.example.emeron</string>
 	<key>PROJECT_ID</key>
-	<string>emeraum</string>
+	<string>curso-emeron-flutter</string>
 	<key>STORAGE_BUCKET</key>
-	<string>emeraum.firebasestorage.app</string>
+	<string>curso-emeron-flutter.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:96848600393:ios:4eee08a6acef65eb23ce98</string>
+	<string>1:1003164058180:ios:6180dcbe0843244c363211</string>
 </dict>
 </plist>

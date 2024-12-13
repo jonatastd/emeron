@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:emeron/core/enviroment/env.config.dart';
 import 'package:emeron/core/services/http/http.service.dart';
 import 'package:emeron/core/services/http/http_impl.service.dart';
 import 'package:emeron/core/services/storage/storage.service.dart';
