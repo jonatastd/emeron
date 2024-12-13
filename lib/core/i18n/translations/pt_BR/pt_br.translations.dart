@@ -8,4 +8,9 @@ final Map<String, String> ptBr = {
   'talk_to_us': 'Fale Conosco',
   'restricted_area': 'Área Restrita',
   'logout_failed_message': 'Não foi possível fazer logout',
+  'login': 'Login',
+  'user': 'Usuário',
+  'password': 'Senha',
+  "required_cpf": "CPF é obrigatório",
+  "invalid_cpf": "CPF inválido",
 };
