@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:emeron/core/services/http/http.service.dart';
 import 'package:emeron/core/services/exceptions/api.exceptions.dart';
 import 'package:emeron/features/auth/infra/dto/requests/signin_request.dto.dart';
@@ -11,12 +12,19 @@ class AuthDataSourceImpl implements IAuthDatasource {
 
   AuthDataSourceImpl(this._httpService);
 
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
   Future<UserResponseDTO> signIn(SignInRequestDTO dto) async {
     try {
       final response = await _httpService.post(
         'https://api-hmg.emeron.edu.br/users/login',
-        body: json.encode(dto.toJson()),
+        body: json.encode(
+          {
+            "email": dto.login,
+            "password": dto.password,
+          },
+        ),
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
@@ -36,6 +44,20 @@ class AuthDataSourceImpl implements IAuthDatasource {
       await _httpService.post('/auth/logout');
     } catch (e) {
       throw ApiException(message: 'Falha ao realizar logout: ${e.toString()}');
+    }
+  }
+
+  @override
+  Future signInFirebaseEmail(SignInRequestDTO dto) async {
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: dto.login,
+        password: dto.password,
+      );
+
+      return userCredential;
+    } on FirebaseAuthException catch (e) {
+      print(e);
     }
   }
 }

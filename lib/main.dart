@@ -3,9 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:emeron/routes/app_pages.dart';
 import 'package:emeron/routes/app_routes.dart';
 import 'package:emeron/core/i18n/app_i18n.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:emeron/core/enviroment/env.config.dart';
 import 'package:emeron/core/services/di/service.binding.dart';
 
-void main() {
+void main() async {
+  Get.put(EnvConfig());
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  await Get.find<EnvConfig>().initConfig(environment: Environment.emeronHomolog);
   runApp(const MainApp());
 }
 

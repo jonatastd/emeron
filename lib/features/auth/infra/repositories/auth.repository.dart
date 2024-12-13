@@ -44,4 +44,18 @@ class AuthRepositoryImpl implements IAuthRepository {
       throw ApiException(message: 'logout_failed_message'.tr);
     }
   }
+
+  @override
+  Future signInWithFirebase(String login, String password) async {
+    try {
+      final dto = SignInRequestDTO(login: login, password: password);
+
+      final userDTO = await remoteDatasource.signInFirebaseEmail(dto);
+
+      return userDTO;
+    } catch (e) {
+      print(e);
+      throw ApiException(message: 'login_failed_message'.tr);
+    }
+  }
 }

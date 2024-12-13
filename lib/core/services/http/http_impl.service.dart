@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:get/get.dart';
+import 'package:emeron/core/enviroment/env.config.dart';
 import 'package:emeron/core/services/http/http.service.dart';
 import 'package:emeron/core/services/storage/storage.service.dart';
 import 'package:emeron/core/services/exceptions/api.exceptions.dart';
@@ -8,9 +10,6 @@ class HttpServiceImpl extends GetxService implements IHttpService {
 
   @override
   Future<void> onInit() async {
-    _getConnect.baseUrl = 'https://api-hmg.emeron.edu.br';
-    _getConnect.timeout = const Duration(seconds: 30);
-
     _getConnect.httpClient.addRequestModifier<dynamic>((request) async {
       final token = await _getStorageToken();
       if (token != null) request.headers['Authorization'] = 'Bearer $token';
@@ -43,9 +42,14 @@ class HttpServiceImpl extends GetxService implements IHttpService {
     super.onInit();
   }
 
+  var baseUrl = Get.find<EnvConfig>().config.api;
+
   @override
-  Future get(String url, {Map<String, String>? headers}) async {
-    final response = await _getConnect.get(url, headers: headers);
+  Future get(String endpoint, {Map<String, String>? headers}) async {
+    final response = await _getConnect.get(
+      '$baseUrl/$endpoint',
+      headers: headers,
+    );
     return _handleResponse(response);
   }
 
@@ -57,7 +61,11 @@ class HttpServiceImpl extends GetxService implements IHttpService {
 
   @override
   Future put(String url, {dynamic body, Map<String, String>? headers}) async {
-    final response = await _getConnect.put(url, body, headers: headers);
+    final response = await _getConnect.put(
+      '$baseUrl/$url',
+      json.encode(body),
+      headers: headers,
+    );
     return _handleResponse(response);
   }
 

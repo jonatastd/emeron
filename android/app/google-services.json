@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "96848600393",
+    "project_id": "emeraum",
+    "storage_bucket": "emeraum.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96848600393:android:cde81180a432689b23ce98",
+        "android_client_info": {
+          "package_name": "com.emeron.teste.saitama"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8pU7-iRYH8R-ktuFgwmno86Kityw9PG4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96848600393:android:726cd94e0384a35423ce98",
+        "android_client_info": {
+          "package_name": "com.exa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8pU7-iRYH8R-ktuFgwmno86Kityw9PG4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
